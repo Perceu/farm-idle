@@ -1,0 +1,21 @@
+@font-face {
+  font-family: retro;
+  src: url("fonts/retro_gaming.ttf");
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  text-align: center;
+  background-color: #3e8948;
+  height: 100%;
+  width: 100%;
+}
+h1 {
+  font-family: retro, sans-serif;
+  color: white
+}
+canvas {
+  display: inline-block;
+  border: 2px solid #133818
+}
