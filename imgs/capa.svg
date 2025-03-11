@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="630"
+   height="500"
+   viewBox="0 0 166.6875 132.29167"
+   version="1.1"
+   id="svg1"
+   inkscape:version="1.4 (e7c3feb100, 2024-10-09)"
+   sodipodi:docname="capa.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview1"
+     pagecolor="#ffffff"
+     bordercolor="#000000"
+     borderopacity="0.25"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="px"
+     inkscape:zoom="0.71535494"
+     inkscape:cx="396.30676"
+     inkscape:cy="113.92946"
+     inkscape:window-width="1920"
+     inkscape:window-height="1011"
+     inkscape:window-x="0"
+     inkscape:window-y="32"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="layer1" />
+  <defs
+     id="defs1" />
+  <g
+     inkscape:label="Camada 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <rect
+       style="fill:#28944c;fill-opacity:1;stroke:#803300;stroke-width:0.233462;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       id="rect1"
+       width="170.90782"
+       height="136.88043"
+       x="-2.1101599"
+       y="-1.1251491" />
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.8056px;font-family:'Retro Gaming';-inkscape-font-specification:'Retro Gaming';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#28944c;stroke:#803300;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       x="24.263741"
+       y="44.013702"
+       id="text1"><tspan
+         sodipodi:role="line"
+         id="tspan1"
+         style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="24.263741"
+         y="44.013702">Farm</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:38.8056px;font-family:'Retro Gaming';-inkscape-font-specification:'Retro Gaming';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#28944c;stroke:#803300;stroke-width:0.264583;stroke-linecap:round;stroke-linejoin:round;paint-order:fill markers stroke"
+       x="31.321888"
+       y="80.252655"
+       id="text1-5"><tspan
+         sodipodi:role="line"
+         id="tspan1-9"
+         style="fill:#ffffff;stroke:none;stroke-width:0.264583"
+         x="31.321888"
+         y="80.252655">Idle</tspan></text>
+  </g>
+</svg>
