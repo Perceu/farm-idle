@@ -19,5 +19,6 @@ class Shop {
     
     draw() {
         image(world, this.new_ground[0], this.new_ground[1], 32, 32, 16, 32, 16, 16); 
+        text('$ 10', this.new_ground[0]-5, this.new_ground[1]+48);
     }
 }
