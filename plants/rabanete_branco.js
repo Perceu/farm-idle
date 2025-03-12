@@ -16,16 +16,16 @@ class RabaneteBranco {
   }
   
   check_harvesting(x, y) {
-      if (x > this.x+5 && x < (this.x+20)) {
-        if (y > this.y+5 && y < (this.y+20)){
+      if (x > this.x && x < (this.x+24)) {
+        if (y > this.y && y < (this.y+24)){
           if (this.harvesting){
             this.actual_frame = 0;
             this.harvesting = false;
-            return true;
+            return 'rabante_branco';
           }
         }
       }
-      return false;
+      return '';
   }
   
   draw_plant() {

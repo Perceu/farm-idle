@@ -41,13 +41,25 @@ function setup() {
   orta = new Orta()
   shop = new Shop()
   plants = [];
+  change = 0
   for (var rows in ground) {
     for (var cell in ground[rows]){
+      change += 1
       y = ground[rows][cell][0]*32
       x = ground[rows][cell][1]*32
-      plants.push(new RabaneteBranco(x+70,y+70, 100))
+      aleatorio = random(0,1)
+      if ((change % 2)==0){
+        plants.push(new RabaneteBranco(x+70,y+70, 80))
+      }else if ((change % 3) == 0){
+        plants.push(new RabaneteVermelho(x+70,y+70, 120))
+      }else if ((change % 5) == 0){
+        plants.push(new Cebola(x+70,y+70, 160))
+      }else{
+        plants.push(new Batata(x+70,y+70, 140))
+      }
     }
   }
+  cursor('/sprites/basic_2.png')
   
 }
 
@@ -72,10 +84,28 @@ function new_ground() {
   return false
 }
 
+function mouseReleased() {
+  cursor('/sprites/basic_2.png')
+}
+
 function mousePressed() {
+  cursor('/sprites/basic_1.png')
   for (let p in plants) {
-    if (plants[p].check_harvesting(mouseX, mouseY)) {
-      points += 1;
+    switch (plants[p].check_harvesting(mouseX, mouseY)) {
+      case 'batata':
+        points += 2;
+        break;
+      case 'rabante_branco':
+        points += 1;
+        break;
+      case 'rabante_vermelho':
+        points += 3;
+        break;
+      case 'cebola':
+        points += 4;
+        break;
+      default:
+        break;
     }
   }
   switch (shop.check_click(mouseX, mouseY)) {
