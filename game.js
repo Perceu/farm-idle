@@ -21,9 +21,9 @@ function get_ground(ground_size) {
 
   let rows = [];
 
-  for (let i = 0; i < ground_size[0]; i++) {
+  for (let i = 0; i < ground_size[1]; i++) {
     let cels = []
-    for (let j = 0; j < ground_size[1]; j++) {
+    for (let j = 0; j < ground_size[0]; j++) {
       cels.push([i,j]);
     }
     rows.push(cels);
@@ -38,7 +38,6 @@ function get_ground(ground_size) {
       }
     }
   }
-  print(rows)
   return rows
 }
 
