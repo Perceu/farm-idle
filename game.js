@@ -18,14 +18,27 @@ function preload() {
 }
 
 function get_ground(ground_size) {
+
   let rows = [];
-  for(let i = 0; i < ground_size[0]; i++){
+
+  for (let i = 0; i < ground_size[0]; i++) {
     let cels = []
-    for(let j = 0; j < ground_size[1]; j++){
-      cels.push([j,i]);
+    for (let j = 0; j < ground_size[1]; j++) {
+      cels.push([i,j]);
     }
     rows.push(cels);
   }
+
+  if (ground.length > 0){
+    for (var n_rows in ground) {
+      for (var n_cell in ground[n_rows]) {
+        if (ground[n_rows][n_cell][2]) {
+          rows[n_rows][n_cell][2] = ground[n_rows][n_cell][2];
+        }
+      }
+    }
+  }
+  print(rows)
   return rows
 }
 
@@ -36,31 +49,12 @@ function setup() {
   fill('white');
   noSmooth();
   points = 0;
-  ground_size = [4,4]
+  ground = [];
+  ground_size = [2, 2]
   ground = get_ground(ground_size);
   orta = new Orta()
   shop = new Shop()
-  plants = [];
-  change = 0
-  for (var rows in ground) {
-    for (var cell in ground[rows]){
-      change += 1
-      y = ground[rows][cell][0]*32
-      x = ground[rows][cell][1]*32
-      aleatorio = random(0,1)
-      if ((change % 2)==0){
-        plants.push(new RabaneteBranco(x+70,y+70, 80))
-      }else if ((change % 3) == 0){
-        plants.push(new RabaneteVermelho(x+70,y+70, 120))
-      }else if ((change % 5) == 0){
-        plants.push(new Cebola(x+70,y+70, 160))
-      }else{
-        plants.push(new Batata(x+70,y+70, 140))
-      }
-    }
-  }
   cursor('/sprites/basic_2.png')
-  
 }
 
 function new_ground() {
@@ -68,19 +62,22 @@ function new_ground() {
   ground_size[1] += 1
   cresceu_x = true
   cresceu_y = true
-  if (ground_size[0] > 20){
+
+  if (ground_size[0] > 20) {
     ground_size[0] = 20
     cresceu_x = false
   }
 
-  if (ground_size[1] > 11){
+  if (ground_size[1] > 11) {
     ground_size[1] = 11
     cresceu_y = false
   }
+
   if (cresceu_x || cresceu_y) {
     ground = get_ground(ground_size);
     return true
   }
+
   return false
 }
 
@@ -90,55 +87,68 @@ function mouseReleased() {
 
 function mousePressed() {
   cursor('/sprites/basic_1.png')
-  for (let p in plants) {
-    switch (plants[p].check_harvesting(mouseX, mouseY)) {
-      case 'batata':
-        points += 2;
-        break;
-      case 'rabante_branco':
-        points += 1;
-        break;
-      case 'rabante_vermelho':
-        points += 3;
-        break;
-      case 'cebola':
-        points += 4;
-        break;
-      default:
-        break;
+
+  for (var rows in ground) {
+    for (var cell in ground[rows]) {
+      y = ground[rows][cell][0] * 32;
+      x = ground[rows][cell][1] * 32;
+      
+      if (mouseY - 70 > y && mouseY - 70 < (y + 32)) {
+        if (mouseX - 70 > x && mouseX - 70 < (x + 32)) {
+          if (ground[rows][cell].length < 3) {
+            ground[rows][cell].push(new RabaneteBranco(x + 70, y + 70, 80));
+          }
+        }
+      }
+      if (ground[rows][cell].length > 2){
+        switch (ground[rows][cell][2].check_harvesting(mouseX, mouseY)) {
+          case 'batata':
+            points += 2;
+            break;
+          case 'rabante_branco':
+            points += 1;
+            break;
+          case 'rabante_vermelho':
+            points += 3;
+            break;
+          case 'cebola':
+            points += 4;
+            break;
+          default:
+            break;
+        }
+      }
     }
   }
   switch (shop.check_click(mouseX, mouseY)) {
     case 'new_ground':
-      if (points > 10){
-        if (new_ground()){
+      if (points > 10) {
+        if (new_ground()) {
           points -= 10
         }
       }
       break;
-  
     default:
-      print('não')
       break;
   }
 }
 
 function draw() {
   background(40, 148, 76);
-  image(money_bar,800-110,0, 110,18);
+  image(money_bar, 690, 0, 110, 18);
   orta.draw()
   shop.draw()
   len_text = points.toString().length
-  text(points, 800-10-(8*len_text), 14);
+  text(points, 790 - (8 * len_text), 14);
   for (var rows in ground) {
-    for (var cell in ground[rows]){
-      y = ground[rows][cell][0]*32
-      x = ground[rows][cell][1]*32
-      image(world,x+64,y+64,32,32,16,0,16,16)
+    for (var cell in ground[rows]) {
+      y = ground[rows][cell][0] * 32
+      x = ground[rows][cell][1] * 32
+      image(world, x + 64, y + 64, 32, 32, 16, 0, 16, 16)
+      if (ground[rows][cell].length > 2) {
+        ground[rows][cell][2].update();
+        ground[rows][cell][2].draw_plant();
+      }
     }
-  }
-  for (p in plants) {
-    plants[p].update()
-    plants[p].draw_plant()
   }
 }

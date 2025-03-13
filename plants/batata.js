@@ -18,14 +18,14 @@ class Batata {
   check_harvesting(x, y) {
     if (x > this.x && x < (this.x+24)) {
       if (y > this.y && y < (this.y+24)){
-          if (this.harvesting){
-            this.actual_frame = 0;
-            this.harvesting = false;
-            return 'batata';
-          }
+        if (this.harvesting){
+          this.actual_frame = 0;
+          this.harvesting = false;
+          return 'batata';
         }
       }
-      return '';
+    }
+    return '';
   }
   
   draw_plant() {

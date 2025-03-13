@@ -10,7 +10,7 @@ class RabaneteBranco {
   
   update(){ 
     this.actual_frame += 1;
-    if ((this.actual_frame % this.frames)==0) {
+    if (this.actual_frame >= this.frames) {
       this.actual_frame = this.frames
     }
   }
