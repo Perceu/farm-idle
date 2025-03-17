@@ -5,16 +5,23 @@ let plants;
 let points;
 let font;
 let money_bar;
-let ground_size
-let world_ui
-let shop
+let ground_size;
+let shop;
+let buy;
+let buy_sell;
+let inventory;
+let selected_sement;
 
 function preload() {
   font = loadFont('fonts/retro_gaming.ttf');
   sprites = loadImage('sprites/spritesheet.png');
   world = loadImage('sprites/world.png');
   money_bar = loadImage('sprites/money_bar.png');
-  world_ui = loadImage('sprites/world_ui.png');
+  inventory = loadImage('sprites/inventory.png');
+  buy = loadImage('sprites/buy.png');
+  buy_sell = loadImage('sprites/buy_sell.png');
+  icons = loadImage('sprites/icons.png');
+  selected_sement = RabaneteBranco;
 }
 
 function get_ground(ground_size) {
@@ -49,10 +56,11 @@ function setup() {
   noSmooth();
   points = 0;
   ground = [];
-  ground_size = [2, 2]
+  ground_size = [2, 2];
   ground = get_ground(ground_size);
-  orta = new Orta()
-  shop = new Shop()
+  orta = new Orta();
+  shop = new Shop();
+  inventor= new Inventory();
   cursor('/sprites/basic_2.png')
 }
 
@@ -95,7 +103,7 @@ function mousePressed() {
       if (mouseY - 70 > y && mouseY - 70 < (y + 32)) {
         if (mouseX - 70 > x && mouseX - 70 < (x + 32)) {
           if (ground[rows][cell].length < 3) {
-            ground[rows][cell].push(new RabaneteBranco(x + 70, y + 70, 80));
+            ground[rows][cell].push(new selected_sement(x + 70, y + 70, 80));
           }
         }
       }
@@ -104,21 +112,61 @@ function mousePressed() {
           case 'batata':
             points += 2;
             break;
-          case 'rabante_branco':
+          case 'rabanete_branco':
             points += 1;
-            break;
-          case 'rabante_vermelho':
+            break
+          case 'rabanete_vermelho':
             points += 3;
-            break;
+            break
           case 'cebola':
             points += 4;
-            break;
+            break
+          case 'cenoura':
+            points += 6;
+            break
+          case 'espinafre':
+            points += 5;
+            break
+          case 'rosa':
+            points += 10;
+            break
+          case 'margarida':
+            points += 8;
+            break
           default:
             break;
         }
       }
     }
   }
+  
+  switch (inventor.check_click(mouseX, mouseY)) {
+    case 'rabanete_branco':
+      selected_sement = RabaneteBranco
+      break;
+    case 'rabanete_vermelho':
+      selected_sement = RabaneteVermelho
+      break;
+    case 'cebola':
+      selected_sement = Cebola
+      break;
+    case 'cenoura':
+      selected_sement = Cenoura
+      break;
+    case 'espinafre':
+      selected_sement = Espinafre
+      break;
+    case 'batata':
+      selected_sement = Batata
+      break;
+    case 'rosa':
+      selected_sement = Rosa
+      break;
+    case 'margarida':
+      selected_sement = Margarida
+      break;
+  }
+
   switch (shop.check_click(mouseX, mouseY)) {
     case 'new_ground':
       if (points > 10) {
@@ -134,20 +182,22 @@ function mousePressed() {
 
 function draw() {
   background(40, 148, 76);
-  image(money_bar, 690, 0, 110, 18);
-  orta.draw()
-  shop.draw()
-  len_text = points.toString().length
-  text(points, 790 - (8 * len_text), 14);
+  orta.draw();
+  shop.draw();
+  inventor.draw();
+  
+  len_text = points.toString().length;
   for (var rows in ground) {
     for (var cell in ground[rows]) {
-      y = ground[rows][cell][0] * 32
-      x = ground[rows][cell][1] * 32
-      image(world, x + 64, y + 64, 32, 32, 16, 0, 16, 16)
+      y = ground[rows][cell][0] * 32;
+      x = ground[rows][cell][1] * 32;
+      image(world, x + 64, y + 64, 32, 32, 32, 64, 16, 16);
       if (ground[rows][cell].length > 2) {
         ground[rows][cell][2].update();
         ground[rows][cell][2].draw_plant();
       }
     }
   }
+  image(money_bar, 610, 10, 120, 32);
+  text(points, 715 - (8 * len_text), 30);
 }

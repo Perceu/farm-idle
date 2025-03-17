@@ -21,7 +21,7 @@ class RabaneteBranco {
           if (this.harvesting){
             this.actual_frame = 0;
             this.harvesting = false;
-            return 'rabante_branco';
+            return 'rabanete_branco';
           }
         }
       }
@@ -30,18 +30,18 @@ class RabaneteBranco {
   
   draw_plant() {
     if (this.actual_frame < (this.frames * 0.2)){
-      image(sprites, this.x, this.y, 16, 16, 48, 10, 16, 16); 
+      image(sprites, this.x, this.y, 16, 16, 32, 0, 16, 16); 
     }else if (this.actual_frame < (this.frames * 0.4)){
-        image(sprites, this.x, this.y, 16, 16, 64, 10, 16, 16); 
+        image(sprites, this.x, this.y, 16, 16, 48, 0, 16, 16); 
     }else if (this.actual_frame < (this.frames * 0.6)){
-        image(sprites, this.x, this.y, 16, 16, 80, 10, 16, 16);
+        image(sprites, this.x, this.y, 16, 16, 64, 0, 16, 16);
     }else if (this.actual_frame < (this.frames * 0.8)){
-        image(sprites, this.x, this.y, 16, 16, 32, 16, 16, 16); 
+        image(sprites, this.x, this.y, 16, 16, 16, 0, 16, 16); 
     }else{
         this.harvesting = true
         let quick_y = random(-1, 1);
         let quick_x = random(-1, 1);
-        image(sprites, this.x+quick_x, this.y+quick_y, 16, 16, 32, 16, 16, 16);
+        image(sprites, this.x+quick_x, this.y+quick_y, 16, 16, 16, 0, 16, 16);
     }
   }
 }
